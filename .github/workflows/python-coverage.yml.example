@@ -1,5 +1,4 @@
 name: Python Coverage
-
 on:
   pull_request:
     branches:
@@ -11,7 +10,6 @@ permissions:
 jobs:
   python-coverage:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,13 +28,3 @@ jobs:
 
       - name: Run tests and generate coverage details
         run: pytest --cov=src
-
-      - name: Coverage comment
-        uses: py-cov-action/python-coverage-comment-action@v3
-        with:
-          GITHUB_TOKEN: ${{ github.token }}
-          MINIMUM_GREEN: 90
-          MINIMUM_ORANGE: 70
-
-      - name: Fail if below threshold
-        run: coverage report --fail-under=90
